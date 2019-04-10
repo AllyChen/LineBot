@@ -57,18 +57,7 @@ def callback():
 def handle_message(event):
 
     if(event.message.text == 'pottermore'):
-        messages = []
         for contentPM in pottermore():
-            #i = 0
-            # message(title & link)
-            #if(i % 2 == 0):
-            #    messages.append(TextSendMessage(text=contentPM))
-            # image
-            #else:
-            #    messages.append(ImageSendMessage(original_content_url=contentPM, preview_image_url=contentPM))
-            # next
-            #i++
-            #messages.append(TextSendMessage(text=contentPM))
             test = test + contentPM
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=test))
 
