@@ -8,6 +8,24 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+# 爬PotterMore的資訊
+import requests
+import bs4
+
+def pottermore():
+    # get the resource from PotterMore
+    res = requests.get('https://www.pottermore.com/')
+    root = bs4.BeautifulSoup(res.text, "html.parser")
+    home_items = root.find_all("div", class_='home-item__wrapper')
+    links = []
+    for item in home_items:
+        if(item.a.get('class')==['home-item__link']):
+            link = item.a.get('href')
+            if('http' not in link):
+                link = 'https://www.pottermore.com' + link
+                links.append(link)
+    return links
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -35,7 +53,7 @@ def callback():
 def handle_message(event):
     reply = False
     if(event.message.text == 'pottermore'):
-        message = TextSendMessage(text='pottermoreGOGOGO')
+        message = TextSendMessage(text=pottermore)
         reply = True
     if('艾莉2號' in event.message.text):
         message = TextSendMessage(text=event.message.text.replace("艾莉2號", ""))
