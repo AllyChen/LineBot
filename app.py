@@ -52,10 +52,13 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    reply = False
+    textReply = False
+    ImageReply = False
+
     if(event.message.text == 'pottermore'):
         message = TextSendMessage(text=pottermore())
-        reply = True
+        textReply = True
+
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
         # it is empty
@@ -63,9 +66,13 @@ def handle_message(event):
             message = TextSendMessage(text="幹嘛！")
         else:
             message = TextSendMessage(text="你"+senderMessage)
-        reply = True
-    if(reply):
+        textReply = True
+    
+    if(textReply):
         line_bot_api.reply_message(event.reply_token, message)
+    
+    if(ImageReply):
+        line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url='https://images.ctfassets.net/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=500&h=500&fit=thumb&f=center&q=85', preview_image_url='https://images.ctfassets.net/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=500&h=500&fit=thumb&f=center&q=85'))
 
 import os
 if __name__ == "__main__":
