@@ -17,15 +17,18 @@ def pottermore():
     res = requests.get('https://www.pottermore.com/')
     root = bs4.BeautifulSoup(res.text, "html.parser")
     home_items = root.find_all("div", class_='home-item__wrapper')
-    content=""
+    contents = []
     for item in home_items:
         if(item.a.get('class')==['home-item__link']):
             link = item.a.get('href')
             if('http' not in link):
                 title = item.find(class_="home-item__title").string
                 link = 'https://www.pottermore.com' + link
-                content += '{}\n{}\n'.format(title, link)
-    return content
+                image = item.find('picture').source.get('data-srcset')
+                content = '{}\n{}\n'.format(title, link)
+                contents.append(content)
+                contents.append(image)
+    return contents
 
 app = Flask(__name__)
 
@@ -54,10 +57,21 @@ def callback():
 def handle_message(event):
     textReply = False
     ImageReply = False
+    PMReply = False
 
     if(event.message.text == 'pottermore'):
-        message = TextSendMessage(text=pottermore())
-        textReply = True
+        messages = []
+        for contentPM in pottermore():
+            i = 0
+            # message(title & link)
+            if(i % 2 == 0):
+                messages.append(TextSendMessage(text=contentPM))
+            # image
+            else:
+                messages.append(ImageSendMessage(original_content_url=contentPM, preview_image_url=contentPM))
+            # next
+            i++
+        PMReply = True
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
@@ -68,11 +82,10 @@ def handle_message(event):
             message = TextSendMessage(text="你"+senderMessage)
         textReply = True
     
-    if(textReply):
-        messages=[]
-        messages.append(message)
-        messages.append(ImageSendMessage(original_content_url='https://images.ctfassets.net/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=500&h=500&fit=thumb&f=center&q=85', preview_image_url='https://images.ctfassets.net/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=500&h=500&fit=thumb&f=center&q=85'))
+    if(PMReply):
         line_bot_api.reply_message(event.reply_token, messages)
+    if(textReply):
+        line_bot_api.reply_message(event.reply_token, message)
 
 import os
 if __name__ == "__main__":
