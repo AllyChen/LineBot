@@ -24,10 +24,10 @@ def pottermore():
             if('http' not in link):
                 title = item.find(class_="home-item__title").string
                 link = 'https://www.pottermore.com' + link
-                image = item.find('picture').source.get('data-srcset')
+                #image = item.find('picture').source.get('data-srcset')
                 content = '{}\n{}\n'.format(title, link)
                 contents.append(content)
-                contents.append(image)
+                #contents.append(image)
     return contents
 
 app = Flask(__name__)
