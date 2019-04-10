@@ -62,7 +62,7 @@ def handle_message(event):
         if not senderMessage:
             message = TextSendMessage(text="幹嘛！")
         else:
-            message = TextSendMessage(text="senderMessage")
+            message = TextSendMessage(text="你"+senderMessage)
         reply = True
     if(reply):
         line_bot_api.reply_message(event.reply_token, message)
