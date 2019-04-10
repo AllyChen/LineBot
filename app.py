@@ -57,7 +57,12 @@ def handle_message(event):
         message = TextSendMessage(text=pottermore())
         reply = True
     if('艾莉2號' in event.message.text):
-        message = TextSendMessage(text=event.message.text.replace("艾莉2號", ""))
+        senderMessage = event.message.text.replace("艾莉2號", "")
+        # it is empty
+        if not senderMessage:
+            message = TextSendMessage(text="幹嘛！")
+        else:
+            message = TextSendMessage(text="senderMessage")
         reply = True
     if(reply):
         line_bot_api.reply_message(event.reply_token, message)
