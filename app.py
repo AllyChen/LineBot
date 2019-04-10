@@ -53,7 +53,10 @@ def callback():
 def handle_message(event):
     reply = False
     if(event.message.text == 'pottermore'):
-        message = TextSendMessage(text=pottermore())
+        content=""
+        for link in pottermore():
+            content += '{}\n{}\n'.format('**', link)
+        message = TextSendMessage(text=content)
         reply = True
     if('艾莉2號' in event.message.text):
         message = TextSendMessage(text=event.message.text.replace("艾莉2號", ""))
