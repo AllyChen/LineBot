@@ -37,8 +37,8 @@ def handle_message(event):
     if(event.message.text == 'pottermore'):
         message = TextSendMessage(text='pottermoreGOGOGO')
         reply = True
-    if('BOT' in event.message.text):
-        message = TextSendMessage(text='我重複一次你說的話: '+event.message.text)
+    if('艾莉2號' in event.message.text):
+        message = TextSendMessage(text=event.message.text.replace("艾莉2號", ""))
         reply = True
     if(reply):
         line_bot_api.reply_message(event.reply_token, message)
