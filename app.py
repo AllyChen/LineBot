@@ -55,23 +55,21 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    textReply = False
-    ImageReply = False
-    PMReply = False
 
     if(event.message.text == 'pottermore'):
         messages = []
         for contentPM in pottermore():
-            i = 0
+            #i = 0
             # message(title & link)
-            if(i % 2 == 0):
-                messages.append(TextSendMessage(text=contentPM))
+            #if(i % 2 == 0):
+            #    messages.append(TextSendMessage(text=contentPM))
             # image
-            else:
-                messages.append(ImageSendMessage(original_content_url=contentPM, preview_image_url=contentPM))
+            #else:
+            #    messages.append(ImageSendMessage(original_content_url=contentPM, preview_image_url=contentPM))
             # next
-            i++
-        PMReply = True
+            #i++
+            messages.append(TextSendMessage(text=contentPM))
+        line_bot_api.reply_message(event.reply_token, messages)
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
@@ -80,11 +78,6 @@ def handle_message(event):
             message = TextSendMessage(text="幹嘛！")
         else:
             message = TextSendMessage(text="你"+senderMessage)
-        textReply = True
-    
-    if(PMReply):
-        line_bot_api.reply_message(event.reply_token, messages)
-    if(textReply):
         line_bot_api.reply_message(event.reply_token, message)
 
 import os
