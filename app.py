@@ -52,7 +52,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     reply = False
-    if(event.message.text == 'pottermore'):
+    #if(event.message.text == 'pottermore'):
         #linksting=''
         #for link in pottermore():
         #    linksting = linksting + '/n' + link
