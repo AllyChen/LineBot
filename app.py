@@ -58,7 +58,7 @@ def handle_message(event):
 
     if(event.message.text == 'pottermore'):
         messages = []
-        for contentPM in pottermore():
+        #for contentPM in pottermore():
             #i = 0
             # message(title & link)
             #if(i % 2 == 0):
@@ -68,7 +68,9 @@ def handle_message(event):
             #    messages.append(ImageSendMessage(original_content_url=contentPM, preview_image_url=contentPM))
             # next
             #i++
-            messages.append(TextSendMessage(text=contentPM))
+            #messages.append(TextSendMessage(text=contentPM))
+            messages.append(TextSendMessage(text="123"))
+            messages.append(TextSendMessage(text="PMPM"))
         line_bot_api.reply_message(event.reply_token, messages)
 
     if('艾莉2號' in event.message.text):
