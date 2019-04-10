@@ -33,13 +33,13 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    reply = false
+    reply = False
     if(event.message.text == 'pottermore'):
         message = TextSendMessage(text='pottermoreGOGOGO')
-        reply = true
+        reply = True
     if('BOT' in event.message.text):
         message = TextSendMessage(text='我重複一次你說的話: '+event.message.text)
-        reply = true
+        reply = True
     if(reply):
         line_bot_api.reply_message(event.reply_token, message)
 
