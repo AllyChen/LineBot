@@ -33,8 +33,15 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text='我重複一次你說的話: '+event.message.text)
-    line_bot_api.reply_message(event.reply_token, message)
+    reply = false
+    if(event.message.text == 'pottermore'):
+        message = TextSendMessage(text='pottermoreGOGOGO')
+        reply = true
+    if('BOT' in event.message.text):
+        message = TextSendMessage(text='我重複一次你說的話: '+event.message.text)
+        reply = true
+    if(reply):
+        line_bot_api.reply_message(event.reply_token, message)
 
 import os
 if __name__ == "__main__":
