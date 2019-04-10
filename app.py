@@ -24,10 +24,10 @@ def pottermore():
             if('http' not in link):
                 title = item.find(class_="home-item__title").string
                 link = 'https://www.pottermore.com' + link
-                #image = item.find('picture').source.get('data-srcset')
+                image = item.find('picture').source.get('data-srcset')
                 content = '{}\n{}\n'.format(title, link)
                 contents.append(content)
-                #contents.append(image)
+                contents.append(image)
     return contents
 
 app = Flask(__name__)
@@ -69,9 +69,8 @@ def handle_message(event):
             # next
             #i++
             #messages.append(TextSendMessage(text=contentPM))
-            messages.append(TextSendMessage(text=contentPM))
-            messages.append(TextSendMessage(text=contentPM))
-        line_bot_api.reply_message(event.reply_token, messages)
+            test = test + contentPM
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=test))
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
