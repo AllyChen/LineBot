@@ -17,14 +17,18 @@ def pottermore():
     res = requests.get('https://www.pottermore.com/')
     root = bs4.BeautifulSoup(res.text, "html.parser")
     home_items = root.find_all("div", class_='home-item__wrapper')
-    links = []
+    contents = []
     for item in home_items:
         if(item.a.get('class')==['home-item__link']):
             link = item.a.get('href')
             if('http' not in link):
+                title = item.find(class_="home-item__title").string
                 link = 'https://www.pottermore.com' + link
-                links.append(link)
-    return links
+                image = item.find('picture').source.get('data-srcset')
+                content = '{}\n{}\n'.format(title, link)
+                contents.append(content)
+                contents.append(image)
+    return contents
 
 app = Flask(__name__)
 
@@ -53,10 +57,10 @@ def callback():
 def handle_message(event):
 
     if(event.message.text == 'pottermore'):
-        content=""
-        for link in pottermore():
-            content += '{}\n{}\n'.format('**', link)
-        message = TextSendMessage(text=content)
+        messages = []
+        for contentPM in pottermore():
+            test = test + contentPM
+        message = TextSendMessage(text=test)
         line_bot_api.reply_message(event.reply_token, message)
 
     if('艾莉2號' in event.message.text):
