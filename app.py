@@ -10,7 +10,7 @@ from linebot.models import *
 
 # 爬PotterMore的資訊
 import requests
-from bs4 import BeautifulSoup
+import bs4
 
 def pottermore():
     # get the resource from PotterMore
