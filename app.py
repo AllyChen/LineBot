@@ -69,8 +69,8 @@ def handle_message(event):
             # next
             #i++
             #messages.append(TextSendMessage(text=contentPM))
-            messages.append(TextSendMessage(text="123"))
-            messages.append(TextSendMessage(text="PMPM"))
+        messages.append(TextSendMessage(text="123"))
+        messages.append(TextSendMessage(text="PMPM"))
         line_bot_api.reply_message(event.reply_token, messages)
 
     if('艾莉2號' in event.message.text):
