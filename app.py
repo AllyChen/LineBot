@@ -77,7 +77,10 @@ def handle_message(event):
                 original_content_url=pmInfos[num].image,
                 preview_image_url=pmInfos[num].image)
             )
-        line_bot_api.reply_message(event.reply_token, messages)
+        line_bot_api.reply_message(event.reply_token, ImageSendMessage(
+            original_content_url=pmInfos[0].image,
+            preview_image_url=pmInfos[0].image)
+            )
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
