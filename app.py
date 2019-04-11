@@ -30,7 +30,8 @@ def pottermore():
                 #contents.append(content)
                 #contents.append(image)
     contents.append(content)
-    return contents
+    TESTS=['one','two','three']
+    return TESTS
 
 app = Flask(__name__)
 
