@@ -42,9 +42,9 @@ def pmTitleLinkMessage(contents):
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('BKQuouNkvzafJZr8oAnJxMQy4q2XDKknKnn5hMiRUB1XxnyT6aZ1B999zApLtEfXJYVsADVUX7Se4qiEFwxZ2tXhnqVCrF4Gs+mUnReOg5B8O9o0clXkrFf8H6b1iExeXbeqFFjCBJEkeXxKDtWbVwdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('nJlTE9zPf2tJ8s8hDwpGwNxaYMEwH1jhUn0eH+XsyNHUc79mn2vmzhjU4meBu4QZd+1oDeymICVqB5iWvMTnTR6wQD12380kfL8qtdJHtUNMuozVHTtJykt1oS2hLxSc4VExQzzsUX2yX6ccHGmCSgdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('6dc439ed466958533f4351a3da5163e4')
+handler = WebhookHandler('3ef683c8a611fc2ee68a158e520ab81a')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
