@@ -70,16 +70,18 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, message)
 
     if(event.message.text == 'pottermoreimage'):
-        messages=[]
-        pmInfos = pottermore()
-        for num in range(5):
-            messages.append(ImageSendMessage(
-                original_content_url=pmInfos[num].image,
-                preview_image_url=pmInfos[num].image)
-            )
+        # messages=[]
+        # pmInfos = pottermore()
+        # for num in range(5):
+        #     messages.append(ImageSendMessage(
+        #         original_content_url=pmInfos[num].image,
+        #         preview_image_url=pmInfos[num].image)
+        #     )
+        Url_1 = '//images.pottermore.com/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=50&h=50&fit=thumb&f=center&q=85'
+        Url_2 = '//images.pottermore.com/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=50&h=50&fit=thumb&f=center&q=85'
         line_bot_api.reply_message(event.reply_token, ImageSendMessage(
-            original_content_url=pmInfos[0].image,
-            preview_image_url=pmInfos[0].image)
+            original_content_url=Url_1,
+            preview_image_url=Url_2)
             )
 
     if('艾莉2號' in event.message.text):
