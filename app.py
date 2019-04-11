@@ -69,6 +69,16 @@ def handle_message(event):
         message = TextSendMessage(text= pmTitleLinkMessage(pottermore()))
         line_bot_api.reply_message(event.reply_token, message)
 
+    if(event.message.text == 'pottermoreimage'):
+        messages=[]
+        pmInfos = pottermore()
+        for num in range(5):
+            messages.append(ImageSendMessage(
+                original_content_url=pmInfos[num].image,
+                preview_image_url=pmInfos[num].image)
+            )
+        line_bot_api.reply_message(event.reply_token, messages)
+
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
         # it is empty
