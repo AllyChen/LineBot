@@ -12,8 +12,11 @@ from linebot.models import *
 import requests
 import bs4
 
+class PMInfo:
+    pass
+
+# get the resource from PotterMore
 def pottermore():
-    # get the resource from PotterMore
     res = requests.get('https://www.pottermore.com/')
     root = bs4.BeautifulSoup(res.text, "html.parser")
     home_items = root.find_all("div", class_='home-item__wrapper')
@@ -22,13 +25,19 @@ def pottermore():
         if(item.a.get('class')==['home-item__link']):
             link = item.a.get('href')
             if('http' not in link):
-                title = item.find(class_="home-item__title").string
-                link = 'https://www.pottermore.com' + link
-                image = item.find('picture').source.get('data-srcset')
-                content = '{}\n{}\n'.format(title, link)
+                content = PMInfo()
+                content.title = item.find(class_="home-item__title").string
+                content.link = 'https://www.pottermore.com' + link
+                content.image = item.find('picture').source.get('data-srcset')
                 contents.append(content)
-                contents.append(image)
     return contents
+
+# conbine the title and link
+def pmTitleLinkMessage(contents):
+    message = ""
+    for content in contents:
+        message = message + '{}\n{}\n'.format(content.title, content.link)
+    return message
 
 app = Flask(__name__)
 
@@ -57,11 +66,8 @@ def callback():
 def handle_message(event):
 
     if(event.message.text == 'pottermore'):
-        texts = [1,2,3,4,5,6]#pottermore()
-        messages = []
-        for t in texts:
-            messages.append(TextSendMessage(text=t))
-        line_bot_api.reply_message(event.reply_token, messages)
+        message = TextSendMessage(text= pmTitleLinkMessage(pottermore()))
+        line_bot_api.reply_message(event.reply_token, message)
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
