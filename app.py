@@ -57,7 +57,7 @@ def callback():
 def handle_message(event):
 
     if(event.message.text == 'pottermore'):
-        texts = [1,2,3,4,5]#pottermore()
+        texts = [1,2,3,4,5,6]#pottermore()
         messages = []
         for t in texts:
             messages.append(TextSendMessage(text=t))
