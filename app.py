@@ -77,7 +77,7 @@ def handle_message(event):
         #         original_content_url=pmInfos[num].image,
         #         preview_image_url=pmInfos[num].image)
         #     )
-        Url_1 = 'https://images.ctfassets.net/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=500&h=500&fit=thumb&f=center&q=85'
+        Url_1 = 'https://images.pottermore.com/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=1980&h=2640&fit=thumb&f=center&q=85'
         #Url_2 = '//images.pottermore.com/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=500&h=500&fit=thumb&f=center&q=85'
         line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=Url_1, preview_image_url=Url_1))
 
