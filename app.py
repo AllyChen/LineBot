@@ -18,6 +18,7 @@ def pottermore():
     root = bs4.BeautifulSoup(res.text, "html.parser")
     home_items = root.find_all("div", class_='home-item__wrapper')
     contents = []
+    content = ""
     for item in home_items:
         if(item.a.get('class')==['home-item__link']):
             link = item.a.get('href')
@@ -25,9 +26,10 @@ def pottermore():
                 title = item.find(class_="home-item__title").string
                 link = 'https://www.pottermore.com' + link
                 image = item.find('picture').source.get('data-srcset')
-                content = '{}\n{}\n'.format(title, link)
-                contents.append(content)
-                contents.append(image)
+                content = content + '{}\n{}\n'.format(title, link)
+                #contents.append(content)
+                #contents.append(image)
+    contents.append(content)
     return contents
 
 app = Flask(__name__)
