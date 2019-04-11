@@ -80,7 +80,7 @@ def handle_message(event):
         Url_1 = 'https://images.pottermore.com/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=1980&h=2640&fit=thumb&f=center&q=85'
         Url_2 = 'https://images.pottermore.com/bxd3o8b291gf/2FIZoqUsLe0sguEsIyuuO2/8be548b18af8cb083e8ffd76f23a93d2/HarryPotter_WB_F2_HarryPotterAndHedwigLookingAtHogwarts_Still_100615_Land.jpg?w=198&h=264&fit=thumb&f=center&q=85'
         
-        line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=Url_1, preview_image_url=Url_2))
+        line_bot_api.reply_message(event.reply_token, ImageSendMessage(original_content_url=Url_2, preview_image_url=Url_2))
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
