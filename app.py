@@ -57,11 +57,11 @@ def callback():
 def handle_message(event):
 
     if(event.message.text == 'pottermore'):
+        texts = ["one", "two", "three"]
         messages = []
-        for contentPM in pottermore():
-            test = test + contentPM
-        message = TextSendMessage(text=test)
-        line_bot_api.reply_message(event.reply_token, message)
+        for t in texts:
+            messages.append(TextSendMessage(text=t))
+        line_bot_api.reply_message(event.reply_token, messages)
 
     if('艾莉2號' in event.message.text):
         senderMessage = event.message.text.replace("艾莉2號", "")
