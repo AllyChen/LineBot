@@ -18,7 +18,7 @@ Input: "艾莉2號"+"字串"
 
 Output: "你"+"字串"
 
-![重複語句](/image/01.jpg)
+![重複語句](/Image/01.jpg)
 
 ### 對PotterMore爬蟲
 - **文章**
@@ -27,7 +27,7 @@ Output: "你"+"字串"
   
   Output: 首頁上最新的文章(含標題與連結)
 
-  ![文章](/image/02.jpg)
+  ![文章](/Image/02.jpg)
 
 - **圖片**
 
@@ -35,7 +35,7 @@ Output: "你"+"字串"
   
   Output: 首頁上最新的前五個圖
   
-  ![圖片](/image/03.jpg)
+  ![圖片](/Image/03.jpg)
 
 ## Reference
 https://github.com/yaoandy107/line-bot-tutorial
